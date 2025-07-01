@@ -14,6 +14,7 @@ import feign.FeignException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import com.rana.weather_by_ip.utilities.Utilities;
@@ -85,6 +86,7 @@ public class WeatherService {
         }
     }
 
+    @Cacheable(value = "ipCache", key = "#ip")
     public IpWeatherResponse generateResponse(String ip, char unit) throws KeyNotFoundException, InvalidIpAddressException, ServiceUnavailableException {
         boolean isIpValid = Utilities.isValidIp(ip);
         if(!isIpValid){
@@ -95,6 +97,10 @@ public class WeatherService {
         }
         logger.info("Validation Successful: The provided ip address {} is valid", ip);
         String units = Utilities.getUnits(unit);
+
+        if("metric".equals(units)){
+            unit = 'C';
+        }
 
 
         IpResponse ipResponse = getIpAddressInfo(ip);
