@@ -90,8 +90,15 @@ mvn spring-boot:run
 ```
 http://localhost:8080
 ```
-
 ---
+
+### Running the Test cases
+
+#If using Maven
+mvn test
+
+#If using Gradle
+./gradlew test
 
 ## API Endpoints
 | Endpoint | Method | Description |
