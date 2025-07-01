@@ -106,7 +106,8 @@ mvn test
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/weather_by_ip` | GET | Get weather by automatically detected IP |
-| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS` | GET | Get weather for specific IP address |
+| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS` | GET | Get weather for specific IP address (Temperature is celsius by default)|
+| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS?tempUnit =TEMPUNIT` | GET | Get weather for specific IP address with temperature in desired formats.(Possible values are 'K','F','C') |
 
 **Example Success Response**
 
