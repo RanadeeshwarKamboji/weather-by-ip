@@ -1,6 +1,0 @@
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.controller.WeatherController - Started processing request with correlation ID: e4012cf4-8935-4331-a98f-647000db7e3f
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.controller.WeatherController - Received IP address for processing: 2001:4860:4860::8888
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.service.WeatherService - Validation Successful: The provided ip address 2001:4860:4860::8888 is valid
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.service.WeatherService - IP lookup completed: Successfully retrieved IP address details from IpStack for '2001:4860:4860::8888'.
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.service.WeatherService - Weather lookup completed: Successfully retrieved weather data from OpenWeatherMap for the provided IP address.
-2025-07-02 01:22:15 [e4012cf4-8935-4331-a98f-647000db7e3f] INFO  c.r.w.service.WeatherService - Response generation succeeded: Desired output created successfully.

@@ -1,4 +1,0 @@
-2025-07-02 00:43:25 [10504b5d-a97c-41d4-bb22-36afaacc9859] INFO  c.r.w.controller.WeatherController - Started processing request with correlation ID: 10504b5d-a97c-41d4-bb22-36afaacc9859
-2025-07-02 00:43:25 [10504b5d-a97c-41d4-bb22-36afaacc9859] INFO  c.r.w.controller.WeatherController - Received IP address for processing: 2001:4860:4860::8888
-2025-07-02 00:43:25 [10504b5d-a97c-41d4-bb22-36afaacc9859] INFO  c.r.w.service.WeatherService - Validation Successful: The provided ip address 2001:4860:4860::8888 is valid
-2025-07-02 00:43:25 [10504b5d-a97c-41d4-bb22-36afaacc9859] INFO  c.r.w.service.WeatherService - Configuration error: IpStack API key ('access_key') not found in environment variables.
