@@ -12,7 +12,8 @@ This project provides a RESTful API for fetching weather forecasts. It's built w
   - [Prerequisites](#prerequisites)  
   - [API Keys Configuration](#api-keys-configuration)  
   - [Building the Project](#building-the-project)  
-  - [Running the Application](#running-the-application)  
+  - [Running the Application](#running-the-application)
+  - [Running the Test Cases](#running-the-test-cases) 
 - [API Endpoints](#api-endpoints)  
 - [Project Structure](#project-structure)  
 ---
@@ -93,12 +94,13 @@ http://localhost:8080
 ---
 
 ### Running the Test cases
-
+```bash
 #If using Maven
 mvn test
 
 #If using Gradle
 ./gradlew test
+```
 
 ## API Endpoints
 | Endpoint | Method | Description |
