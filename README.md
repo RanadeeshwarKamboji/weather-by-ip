@@ -12,7 +12,8 @@ This project provides a RESTful API for fetching weather forecasts. It's built w
   - [Prerequisites](#prerequisites)  
   - [API Keys Configuration](#api-keys-configuration)  
   - [Building the Project](#building-the-project)  
-  - [Running the Application](#running-the-application)  
+  - [Running the Application](#running-the-application)
+  - [Running the Test Cases](#running-the-test-cases) 
 - [API Endpoints](#api-endpoints)  
 - [Project Structure](#project-structure)  
 ---
@@ -90,14 +91,23 @@ mvn spring-boot:run
 ```
 http://localhost:8080
 ```
-
 ---
+
+### Running the Test cases
+```bash
+#If using Maven
+mvn test
+
+#If using Gradle
+./gradlew test
+```
 
 ## API Endpoints
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/api/weather_by_ip` | GET | Get weather by automatically detected IP |
-| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS` | GET | Get weather for specific IP address |
+| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS` | GET | Get weather for specific IP address (Temperature is celsius by default)|
+| `/api/weather_by_ip?ip=INPUT_IP_ADDRESS?tempUnit =TEMPUNIT` | GET | Get weather for specific IP address with temperature in desired formats.(Possible values are 'K','F','C') |
 
 **Example Success Response**
 
