@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define a timestamp variable for the filename -->
+    <timestamp key="logTimestamp" datePattern="yyyy-MM-dd_HH-mm-ss"/>
+
+    <!-- Console appender (optional) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%X{X-Correlation-ID}] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="PER_REQUEST" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <key>X-Correlation-ID</key>
+            <defaultValue>unknown</defaultValue>
+        </discriminator>
+
+        <sift>
+            <appender name="FILE-${X-Correlation-ID}" class="ch.qos.logback.core.FileAppender">
+                <file>logs/request-${X-Correlation-ID}.log</file>
+                <append>true</append>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss} [%X{X-Correlation-ID}] %-5level %logger{36} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <logger name="com.rana.weather_by_ip" level="INFO" additivity="false">
+        <appender-ref ref="PER_REQUEST" />
+        <appender-ref ref = "CONSOLE"/>
+    </logger>
+
+
+    <!-- Root logger -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

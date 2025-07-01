@@ -1,0 +1,5 @@
+2025-07-02 00:44:13 [c634b225-6536-416f-ba8e-cde9893b9341] INFO  c.r.w.controller.WeatherController - Started processing request with correlation ID: c634b225-6536-416f-ba8e-cde9893b9341
+2025-07-02 00:44:13 [c634b225-6536-416f-ba8e-cde9893b9341] INFO  c.r.w.controller.WeatherController - Received IP address for processing: 2001:4860:4860::8888
+2025-07-02 00:44:13 [c634b225-6536-416f-ba8e-cde9893b9341] INFO  c.r.w.service.WeatherService - Validation Successful: The provided ip address 2001:4860:4860::8888 is valid
+2025-07-02 00:44:15 [c634b225-6536-416f-ba8e-cde9893b9341] INFO  c.r.w.service.WeatherService - IP lookup completed: Successfully retrieved IP address details from IpStack for '2001:4860:4860::8888'.
+2025-07-02 00:44:15 [c634b225-6536-416f-ba8e-cde9893b9341] WARN  c.r.w.service.WeatherService - Configuration error: OpenWeatherMap API key ('appid') not found in environment variables. Please verify setup.

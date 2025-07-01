@@ -1,0 +1,5 @@
+2025-07-01 23:21:09 [e87a4102-36d7-498f-812d-8643834930b5] INFO  c.r.w.controller.WeatherController - Started processing request with correlation ID: e87a4102-36d7-498f-812d-8643834930b5
+2025-07-01 23:21:09 [e87a4102-36d7-498f-812d-8643834930b5] INFO  c.r.w.controller.WeatherController - Received IP address for processing: 0:0:0:0:0:0:0:1
+2025-07-01 23:21:09 [e87a4102-36d7-498f-812d-8643834930b5] INFO  c.r.w.service.WeatherService - Validation Successful: The provided ip address 0:0:0:0:0:0:0:1 is valid
+2025-07-01 23:21:10 [e87a4102-36d7-498f-812d-8643834930b5] INFO  c.r.w.service.WeatherService - IP lookup completed: Successfully retrieved IP address details from IpStack for '0:0:0:0:0:0:0:1'.
+2025-07-01 23:21:10 [e87a4102-36d7-498f-812d-8643834930b5] WARN  c.r.w.service.WeatherService - Geolocation error: Provided IP address lacks valid latitude and longitude coordinates.
