@@ -57,5 +57,5 @@ Obtain an API key from your weather provider and update this file:
 `src/main/resources/application.properties`
 
 ```properties
-external.weather.api.base-url=https://api.exampleweather.com/data/2.5/
-external.weather.api.key=YOUR_EXTERNAL_WEATHER_API_KEY
+IPSTACK_API_KEY=YOUR_EXTERNAL_IPSTACK_ACCESS_KEY
+WEATHER_MAP_API_KEY=YOUR_EXTERNAL_OPENWEATHERMAP_APPID
