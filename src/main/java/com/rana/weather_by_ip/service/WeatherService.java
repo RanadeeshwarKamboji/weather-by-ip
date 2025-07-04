@@ -102,7 +102,6 @@ public class WeatherService {
             unit = 'C';
         }
 
-
         IpResponse ipResponse = getIpAddressInfo(ip);
 
         double lat = ipResponse.getLatitude();
