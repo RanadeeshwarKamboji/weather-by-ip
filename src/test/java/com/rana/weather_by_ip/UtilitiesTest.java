@@ -31,9 +31,4 @@ class UtilitiesTest {
         assertTrue(thirdResult);
         assertTrue(fourthResult);
     }
-
-    @Test
-    void testIpStack(){
-
-    }
 }
