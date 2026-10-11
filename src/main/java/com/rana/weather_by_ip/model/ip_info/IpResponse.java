@@ -28,8 +28,7 @@ public class IpResponse {
     private Location location;
     private boolean success;
     private IpStackError error;
-
-
+    private String hostname;
 }
 
 

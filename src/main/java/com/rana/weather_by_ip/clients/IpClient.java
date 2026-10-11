@@ -11,6 +11,7 @@ public interface IpClient {
     @GetMapping("/{ip}")
     IpResponse getIpAddressDetails(
             @PathVariable("ip") String ip,
-            @RequestParam String access_key
+            @RequestParam("access_key") String accessKey,
+            @RequestParam(value = "hostname", defaultValue = "1") int hostname
     );
 }

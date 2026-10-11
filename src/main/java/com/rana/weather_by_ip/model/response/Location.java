@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Location {
     private String city;
     private String country;
+    private String hostname;
 
     // Getters and setters
 }

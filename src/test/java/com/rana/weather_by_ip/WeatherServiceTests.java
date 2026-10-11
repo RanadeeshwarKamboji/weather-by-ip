@@ -62,8 +62,9 @@ class WeatherServiceTests {
         ipResponse.setCountry_name("United States");
         ipResponse.setLatitude(TEST_LAT);
         ipResponse.setLongitude(TEST_LON);
+        ipResponse.setHostname("dns.google");
 
-        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY)).thenReturn(ipResponse);
+        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY, 1)).thenReturn(ipResponse);
 
         WeatherResponse weatherResponse = new WeatherResponse();
         Main main = new Main();
@@ -82,12 +83,13 @@ class WeatherServiceTests {
         assertEquals(TEST_IP, response.getIp());
         assertEquals("Mountain View", response.getLocation().getCity());
         assertEquals("United States", response.getLocation().getCountry());
+        assertEquals("dns.google", response.getLocation().getHostname());
         assertEquals("288.15K", response.getWeather().getTemperature());
         assertEquals(60, response.getWeather().getHumidity());
         assertEquals("clear sky", response.getWeather().getDescription());
 
         // Verify mocks were called as expected
-        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY);
+        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0);
         verify(weatherClient).getWeatherData(TEST_LAT, TEST_LON, WEATHER_MAP_KEY, KELVIN_UNITS);
 
     }
@@ -106,7 +108,7 @@ class WeatherServiceTests {
         ipResponse.setLatitude(TEST_LAT);
         ipResponse.setLongitude(TEST_LON);
 
-        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY)).thenReturn(ipResponse);
+        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0)).thenReturn(ipResponse);
 
         WeatherResponse weatherResponse = new WeatherResponse();
         Main main = new Main();
@@ -125,7 +127,7 @@ class WeatherServiceTests {
         assertEquals("15.0°C", response.getWeather().getTemperature());
 
         // Verify mocks were called as expected
-        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY);
+        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0);
         verify(weatherClient).getWeatherData(TEST_LAT, TEST_LON, WEATHER_MAP_KEY, CELSIUS_UNITS);
 
     }
@@ -174,7 +176,7 @@ class WeatherServiceTests {
     void generateResponse_IpClientFeignException_ThrowsException() {
 
         when(env.getProperty("IP_STACK_API_KEY")).thenReturn(IP_STACK_KEY);
-        doThrow(mock(FeignException.class)).when(ipClient).getIpAddressDetails(eq(TEST_IP), anyString());
+        doThrow(mock(FeignException.class)).when(ipClient).getIpAddressDetails(eq(TEST_IP), anyString(), 0);
 
         ServiceUnavailableException thrown = assertThrows(ServiceUnavailableException.class, () -> {
             weatherService.generateResponse(TEST_IP, 'C');
@@ -197,7 +199,7 @@ class WeatherServiceTests {
         ipResponse.setLongitude(TEST_LON); // Valid longitude
         ipResponse.setCity("Test City");
         ipResponse.setCountry_name("Test Country");
-        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY)).thenReturn(ipResponse);
+        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0)).thenReturn(ipResponse);
 
         InvalidIpAddressException thrown = assertThrows(InvalidIpAddressException.class, () -> {
             weatherService.generateResponse(TEST_IP, 'C');
@@ -220,7 +222,7 @@ class WeatherServiceTests {
         ipResponse.setSuccess(true);
         ipResponse.setLatitude(TEST_LAT);
         ipResponse.setLongitude(TEST_LON);
-        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY)).thenReturn(ipResponse);
+        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0)).thenReturn(ipResponse);
 
         KeyNotFoundException thrown = assertThrows(KeyNotFoundException.class, () -> {
             weatherService.generateResponse(TEST_IP, 'C');
@@ -229,7 +231,7 @@ class WeatherServiceTests {
         assertEquals("Missing OpenWeatherMap API key.", thrown.getMessage());
         assertEquals("Please provide a valid 'appid' to authenticate your request.", thrown.getSuggestion());
         assertEquals("Internal Application System", thrown.getService());
-        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY); // IpClient should have been called
+        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0); // IpClient should have been called
         verifyNoInteractions(weatherClient); // Weather client should NOT have been called
     }
 
@@ -244,7 +246,7 @@ class WeatherServiceTests {
         ipResponse.setSuccess(true);
         ipResponse.setLatitude(TEST_LAT);
         ipResponse.setLongitude(TEST_LON);
-        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY)).thenReturn(ipResponse);
+        when(ipClient.getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0)).thenReturn(ipResponse);
 
 
         // Mock WeatherClient to throw a FeignException
@@ -258,6 +260,6 @@ class WeatherServiceTests {
         assertEquals("Please ensure your application's API key (App ID) for OpenWeatherMap is correct.", thrown.getSuggestion());
         assertEquals("OpenWeatherMap", thrown.getService());
 
-        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY); // IpClient should have been called
+        verify(ipClient).getIpAddressDetails(TEST_IP, IP_STACK_KEY, 0); // IpClient should have been called
     }
 }
