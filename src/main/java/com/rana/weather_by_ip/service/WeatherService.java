@@ -45,7 +45,7 @@ public class WeatherService {
                     "Internal Application System.");
         }
         try {
-            IpResponse ipResponse = ipClient.getIpAddressDetails(ip, accessKey);
+            IpResponse ipResponse = ipClient.getIpAddressDetails(ip, accessKey, 1);
             if (!ipResponse.isSuccess() && ipResponse.getError() !=null && ("invalid_access_key".equals(ipResponse.getError().getType()))) {
                 logger.warn("IP lookup failed: Unable to retrieve IP address details from IpStack. Possible cause — missing or invalid 'access_key'.");
                 throw new ServiceUnavailableException("The IpStack service is currently unreachable or returning errors. Please try again later",
@@ -120,8 +120,10 @@ public class WeatherService {
 
         String city = ipResponse.getCity();
         String country = ipResponse.getCountry_name();
+        String hostname = ipResponse.getHostname();
         location.setCity(city);
         location.setCountry(country);
+        location.setHostname(hostname);
 
         double temp = weatherResponse.getMain().getTemp();
         int humidity = weatherResponse.getMain().getHumidity();
