@@ -23,7 +23,16 @@ public class RateLimitingFilter implements Filter {
             throws LimitExceededException, IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
+
+        String path = req.getRequestURI();
+        if(path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs") || path.startsWith("/actuator")){
+            chain.doFilter(request, response);
+            return;
+        }
+
         String ip = req.getRemoteAddr();
+
+        
 
         Bucket bucket = buckets.computeIfAbsent(ip, k -> Bucket4j.builder()
                 .addLimit(Bandwidth.classic(5, Refill.greedy(5, Duration.ofMinutes(1))))
