@@ -30,7 +30,7 @@ public class RateLimitingFilter implements Filter {
             return;
         }
 
-        
+        String ip = req.getRemoteAddr();
 
         Bucket bucket = buckets.computeIfAbsent(ip, k -> Bucket4j.builder()
                 .addLimit(Bandwidth.classic(5, Refill.greedy(5, Duration.ofMinutes(1))))
