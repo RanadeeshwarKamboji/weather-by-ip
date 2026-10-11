@@ -110,7 +110,7 @@ mvn test
 | `/api/weather_by_ip?ip=INPUT_IP_ADDRESS?tempUnit =TEMPUNIT` | GET | Get weather for specific IP address with temperature in desired formats.(Possible values are 'K','F','C') |
 
 **Example Success Response**
-
+```json
 {
     "ip": "2001:4860:4860::8888",
     "location": {
@@ -123,10 +123,11 @@ mvn test
         "description": "clear sky"
     }
 }
+```
 
 
 **Example Error Response**
-
+```json
 {
     "status": 422,
     "error": "Incorrect Details",
@@ -139,7 +140,7 @@ mvn test
     "path": "/weather-by-ip",
     "timestamp": "2025-07-01T21:40:28.69883491"
 }
-
+```
 ---
 
 ## Project Structure
