@@ -30,8 +30,6 @@ public class RateLimitingFilter implements Filter {
             return;
         }
 
-        String ip = req.getRemoteAddr();
-
         
 
         Bucket bucket = buckets.computeIfAbsent(ip, k -> Bucket4j.builder()
